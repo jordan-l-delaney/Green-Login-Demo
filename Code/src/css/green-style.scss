@@ -1,0 +1,217 @@
+/* Import Fonts */
+@import url(//db.onlinewebfonts.com/c/3a47f5f06b5484abfeee9eac90348a9c?family=Gotham);
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+/* Map for page colours */
+$colours: (
+  primary: #2eaf5f,
+  background: #eaeaea,
+  darkText: #4a4848,
+  lightText: #7e7e7e,
+  checkBox: #00b3ff,
+  shadow: #797979,
+  checkBoxHighlight: #ccc
+);
+
+/* Function to make setting colours look cleaner */
+@function color($colour-name) {
+    @return map-get($colours, $colour-name);
+  }
+
+/* Varibles for resused values */
+$mobilePadding: 35px 15px 30px 15px;
+$tabletPadding: 35px;
+$desktopPadding: 60px 50px 40px 50px;
+
+$phoneSize: 14px;
+$tabletSize: 18px;
+
+$shadow: 10px 10px 49px -12px color(shadow);
+
+/* Setting up mixin to make page responsive */
+$desktop: 840px;
+$tablet: 600px;
+
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet}) {
+    @content;
+  }
+}
+
+/* Main Style Start */
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
+/* Main section */
+body {
+  background-color: color(background);
+  font-family: "Gotham", sans-serif;
+
+  /* Login Container */
+  .login-holder {
+    width: 100%;
+    background-color: white;
+    padding: $mobilePadding;
+    border-radius: 5px;
+    margin: 0 auto;
+
+    @include tablet {
+    width: 60%;
+    padding: $tabletPadding;
+    box-shadow: $shadow;
+    margin: 1em auto;
+    }
+
+    @include desktop {
+    max-width: 30em;
+    padding: $desktopPadding;
+    margin: 1em auto;
+    }
+        /* Logo and Heading */
+        .green-logo {
+        width: 30%;
+        margin-bottom: 2em;
+        }
+
+        .login-header,
+        .login-text {
+        margin: 5px;
+        }
+
+        .login-header {
+        color: color(darkText);
+        font-size: 25px;
+
+        @include tablet {
+            font-size: 30px;
+        }
+
+        @include desktop {
+            font-size: 40px;
+        }
+        }
+
+        .login-text,
+        .form-label {
+        color: color(lightText);
+        font-size: 15px;
+        font-family: "Open Sans", sans-serif;
+
+        @include tablet {
+            font-size: 20px;
+        }
+        }
+
+        /* Form Style */
+        .form-holder {
+            /* Set Fonts and size of input text */
+            input {
+                font-family: "Open Sans", sans-serif;
+                font-size: $phoneSize;
+
+                @include tablet {
+                font-size: $tabletSize;
+                }
+            }
+
+            /* Email text input */
+            .form-email {
+                width: 90%;
+                margin: 2.5em auto;
+                padding: 5px 5px;
+                border: none;
+                border-bottom: 2px solid color(lightText);
+                transition: 0.2s;
+
+                @include tablet {
+                padding: 10px 10px;
+                }
+            }
+
+            .form-email:focus {
+                border-bottom: 2px solid color(primary);
+            }
+
+            /* Checkbox Section */
+            .form-label {
+                display: block;
+                position: relative;
+                padding-left: 25px;
+                margin-bottom: 12px;
+                cursor: pointer;
+                user-select: none;
+                font-size: 12px;
+                color:black;
+               
+
+                @include tablet {
+                font-size: 16px;
+                padding-left: 35px;
+                }
+
+                /* Hide actual Checkbox so we can display styled span instead */
+                input {
+                position: absolute;
+                opacity: 0;
+                height: 0;
+                width: 0;
+                }
+
+                .checkBox {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 13px;
+                    width: 13px;
+                    border: 1px solid color(checkBoxHighlight);
+                    border-radius: 5px;
+                    vertical-align: baseline;
+
+                    @include tablet {
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+            }
+
+            /* Set events for checkbox */
+            .form-label:hover input ~ .checkBox {
+                background-color: color(checkBoxHighlight);
+            }
+        
+            .form-label input:checked ~ .checkBox {
+                background-color: color(checkBox);
+                border: 1px solid color(checkBox);
+            }
+            
+            /* Sign In Button */
+            .form-submit {
+                margin: 3em 0;
+                padding: 10px 25px 10px 25px;
+                border-radius: 5px;
+                border: 1px solid color(lightText);
+                background-color: white;
+                transition: 0.5s;
+        
+                @include tablet {
+                padding: 12px 32px 12px 32px;
+                }
+            }
+        
+            .form-submit:hover {
+                background-color: color(primary);
+                color: white;
+                border: none;
+            }
+        }
+  }
+}
