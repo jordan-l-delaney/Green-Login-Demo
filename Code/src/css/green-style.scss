@@ -5,11 +5,11 @@
 /* Map for page colours */
 $colours: (
   primary: #2eaf5f,
-  background: #eaeaea,
+  background: #F5F5F5,
   darkText: #4a4848,
   lightText: #7e7e7e,
   checkBox: #00b3ff,
-  shadow: #797979,
+  shadow: rgba(0,0,0,0.2), //Using GBA for shadow to have some opacity 
   checkBoxHighlight: #ccc
 );
 
@@ -26,7 +26,7 @@ $desktopPadding: 60px 50px 40px 50px;
 $phoneSize: 14px;
 $tabletSize: 18px;
 
-$shadow: 10px 10px 49px -12px color(shadow);
+$shadow: 0px 3px 15px  color(shadow);
 
 /* Setting up mixin to make page responsive */
 $desktop: 840px;
@@ -61,20 +61,22 @@ body {
     width: 100%;
     background-color: white;
     padding: $mobilePadding;
-    border-radius: 5px;
-    margin: 0 auto;
+    border-radius: 15px;
+    position:absolute;
+    top:50%;
+		left:50%;
+    transform: translate(-50%, -50%);
 
     @include tablet {
     width: 60%;
     padding: $tabletPadding;
     box-shadow: $shadow;
-    margin: 1em auto;
     }
 
     @include desktop {
     max-width: 30em;
     padding: $desktopPadding;
-    margin: 1em auto;
+    
     }
         /* Logo and Heading */
         .green-logo {
@@ -197,7 +199,7 @@ body {
             .form-submit {
                 margin: 3em 0;
                 padding: 10px 25px 10px 25px;
-                border-radius: 5px;
+                border-radius: 10px;
                 border: 1px solid color(lightText);
                 background-color: white;
                 transition: 0.5s;
